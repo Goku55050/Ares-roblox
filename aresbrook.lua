@@ -158,68 +158,6 @@ TargetInput.TextSize = 14
 TargetInput.PlaceholderText = "Target display name..."
 TargetInput.Parent = TargetFrame
 
--- Message Templates Section
-local TemplatesSection = Instance.new("Frame")
-TemplatesSection.Name = "TemplatesSection"
-TemplatesSection.Size = UDim2.new(1, 0, 0, 140)
-TemplatesSection.Position = UDim2.new(0, 0, 0, 130)
-TemplatesSection.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-TemplatesSection.BorderSizePixel = 1
-TemplatesSection.BorderColor3 = Color3.fromRGB(50, 50, 50)
-TemplatesSection.Parent = ContentFrame
-
-local TemplatesTitle = Instance.new("TextLabel")
-TemplatesTitle.Name = "TemplatesTitle"
-TemplatesTitle.Size = UDim2.new(1, 0, 0, 25)
-TemplatesTitle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-TemplatesTitle.BorderSizePixel = 0
-TemplatesTitle.Text = " MESSAGE TEMPLATES "
-TemplatesTitle.TextColor3 = Color3.fromRGB(255, 0, 0)
-TemplatesTitle.Font = Enum.Font.GothamBold
-TemplatesTitle.TextSize = 12
-TemplatesTitle.Parent = TemplatesSection
-
--- Tag-proof templates
-local TemplateButtons = {
-	{Text = "[T] no ka baap [U]", Template = "{} no ka baap {}"},
-	{Text = "[U] cod hai", Template = "{} cod hai"},
-	{Text = "[T] got rekt by [U]", Template = "{} got rekt by {}"},
-	{Text = "[U] > [T]", Template = "{} > {}"},
-	{Text = "[T] L [U] W", Template = "{} L {} W"},
-	{Text = "[U] owns [T]", Template = "{} owns {}"},
-}
-
-for i, template in ipairs(TemplateButtons) do
-	local row = math.floor((i-1)/3)
-	local col = (i-1) % 3
-	
-	local TemplateButton = Instance.new("TextButton")
-	TemplateButton.Name = "Template" .. i
-	TemplateButton.Size = UDim2.new(0.31, 0, 0, 35)
-	TemplateButton.Position = UDim2.new(0.015 + (col * 0.33), 0, 0.2 + (row * 0.45), 0)
-	TemplateButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	TemplateButton.BorderSizePixel = 0
-	TemplateButton.Text = template.Text
-	TemplateButton.TextColor3 = Color3.fromRGB(220, 220, 220)
-	TemplateButton.Font = Enum.Font.Gotham
-	TemplateButton.TextSize = 11
-	TemplateButton.TextWrapped = true
-	TemplateButton.Parent = TemplatesSection
-	
-	TemplateButton.MouseButton1Click:Connect(function()
-		local targetName = TargetInput.Text
-		local userName = UserInput.Text
-		
-		if targetName == "" then targetName = "Target" end
-		if userName == "" then userName = "User" end
-		
-		local message = string.gsub(template.Template, "{}", {targetName, userName})
-		MessageInput.Text = message
-		StatusLabel.Text = "Template applied"
-		StatusLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
-	end)
-end
-
 -- Custom Message Section
 local CustomSection = Instance.new("Frame")
 CustomSection.Name = "CustomSection"
@@ -506,7 +444,7 @@ VersionLabel.Name = "VersionLabel"
 VersionLabel.Size = UDim2.new(0, 120, 0, 15)
 VersionLabel.Position = UDim2.new(1, -125, 1, -20)
 VersionLabel.BackgroundTransparency = 1
-VersionLabel.Text = "BROOKHAVEN V4.0 | MICKEY"
+VersionLabel.Text = "BROOKHAVEN "
 VersionLabel.TextColor3 = Color3.fromRGB(200, 0, 0)
 VersionLabel.Font = Enum.Font.GothamBold
 VersionLabel.TextSize = 10
